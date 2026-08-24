@@ -1,0 +1,112 @@
+body {
+    margin:0;
+    min-height: 100vh;
+    font-family: "IM Fell English", serif;
+    background-color:#111;
+    color:#eee;
+}
+
+.topbar {
+    height:70px;
+    background-color: #111;
+}
+
+.background{
+    position: absolute;
+    top: 70px;
+    left: 0px;
+    width:100%;
+    height:100%;
+    filter: brightness(0.4);
+    object-fit:cover;
+    z-index:-1;
+}
+ 
+.page{
+    position: relative;
+    z-index: 1;
+    color:#eee;
+    padding: 40px;
+}
+ 
+p3{
+    position: absolute;
+    top: 20px;
+    font-size: 20px;
+    color: #eee;
+}
+ 
+#menuBtn{
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    padding: 6px 10px;
+    font-size: 16px;
+    cursor: pointer;
+    z-index: 3;   /* สูงกว่า #drawer เผื่อวันหลังอยากให้ปุ่มลอยอยู่เหนือเมนูเสมอ */
+}
+ 
+#overlay{
+    position:fixed;
+    inset: 0%;
+    background:rgba(0,0,0,0.5);
+    opacity:0;
+    pointer-events:none;
+    transition:opacity 0.2s;
+    z-index: 1;
+}
+ 
+#overlay.open{
+    opacity:1;
+    pointer-events:auto;
+}
+ 
+/* -------------------------------------------------------------------------
+   #drawer = กล่องรวมทั้งกล่อง ต้องเป็นตัวที่ position:fixed + เลื่อนเข้า-ออก
+   (เมื่อก่อนบั๊กเพราะ style พวกนี้ไปอยู่ที่ button/a แต่ละอันแทน)
+------------------------------------------------------------------------- */
+#drawer{
+    position:fixed;
+    top:0;
+    right:0;
+    width:220px;
+    height:100%;
+    background:#111;
+    display:flex;
+    flex-direction:column;
+    border-left:1px solid #888;
+    transform:translateX(100%);
+    transition:transform 0.2s;
+    z-index: 2;
+}
+ 
+#drawer.open{
+    transform:translateX(0);
+}
+ 
+/* -------------------------------------------------------------------------
+   ส่วนนี้คือหน้าตาของ "เนื้อความ" แต่ละปุ่ม/ลิงก์ข้างในกล่อง
+   ไม่ต้องมี position/transform ที่นี่แล้ว เพราะกล่องแม่ (#drawer) จัดการให้หมดแล้ว
+------------------------------------------------------------------------- */
+#drawer button,
+#drawer a{
+    display:block;
+    background:none;
+    border:none;
+    color:#eee;
+    font-size:16px;
+    padding:12px 8px;
+    text-align:left;
+    text-decoration: none;
+    cursor:pointer;
+}
+ 
+#drawer button:hover,
+#drawer a:hover{
+    background:rgba(255,255,255,0.1);
+}
+ 
+
+footer {
+    text-align: center; color: #ffffff; font-size: 12px; padding: 12px;
+}

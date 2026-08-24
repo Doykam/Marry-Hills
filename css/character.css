@@ -1,0 +1,123 @@
+/* chracter search */
+.character-search {
+    max-width: 500px;
+    margin: 0 auto 28px;
+}
+
+.character-search input{
+    width: 100%;
+    padding: 14px 18px;
+    border-radius: 10px;
+    border:1px solid #3a372f ;
+    background: #1c1a15;
+    color: #eee;
+    font-family: inherit;
+    font-size: 14px;
+    outline: none;
+}
+
+.character-search input:focus{
+    border-color: #b89452;
+}
+
+.character-grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 20px;
+}
+
+/* character id card */
+
+.character-card{
+    background: #1c1a15;
+    border: 2px solid #b89452;
+    border-radius: 16px;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 1fr 100px;
+    gap: 16px;
+}
+
+.card-eyebrow{
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: #8a8577;
+    text-transform: uppercase;
+    margin: 6px;
+}
+
+
+.card-name{
+  font-size:20px;
+  font-family:Georgia,serif;
+  margin:0 0 2px;
+  color:#f2ede2;
+}
+ 
+.card-house{
+  font-size:13px;
+  color:#b89452;
+  margin-bottom:14px;
+}
+ 
+/* แต่ละแถวสเตตัส (ทั้งแบบ generic และแบบพิเศษ) ใช้หน้าตาเดียวกัน */
+.card-stat{
+  font-size:12.5px;
+  margin-bottom:8px;
+}
+.card-stat .stat-label{
+  color:#8a8577;
+  display:block;
+  font-size:11px;
+  letter-spacing:.5px;
+  margin-bottom:1px;
+}
+.card-stat .stat-value{
+  color:#e7e5df;
+}
+ 
+.card-photo-box{
+  width:100px;
+  height:100px;
+  border-radius:8px;
+  overflow:hidden;
+  border:2px solid #3a372f;
+  background:#0f1218;
+  flex-shrink:0;
+}
+.card-photo-box img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+ 
+/* แถวลิงก์ด้านล่างการ์ด (IG / เอกสารเต็ม) */
+.card-links{
+  grid-column:1 / -1;
+  display:flex;
+  gap:10px;
+  margin-top:12px;
+  padding-top:12px;
+  border-top:1px solid #3a372f;
+}
+.card-links a{
+  font-size:12.5px;
+  color:#cfc9ba;
+  text-decoration:none;
+  background:#2a2416;
+  border:1px solid #3a372f;
+  padding:6px 12px;
+  border-radius:20px;
+}
+.card-links a:hover{
+  border-color:#b89452;
+  color:#f2ede2;
+}
+ 
+.character-empty{
+  text-align:center;
+  color:#8a8577;
+  padding:60px 0;
+  grid-column:1/-1;
+}

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@100;200;300;400;500;600;700&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stykesheet" href="css/character.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+    <title>Character</title>
+</head>
+<body>
+
+    <!-- Topbar Start -->
+    <nav class="topbar">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html"><img width="75" height="75" src="image/MHlogo.png" alt="Logo"></a>
+                <p3>MARRY HILLS<p3>
+            </div>
+        <!-- Menu button Start -->
+            <button id="menuBtn">☰</button>
+        <div id="overlay"></div>
+         <nav id="drawer">
+            <a href="index.html">หน้าหลัก</a>
+            <a href="map.html">แผนที่เมือง</a>
+            <a href="character.html">ข้อมูลตัวละคร</a>
+            <a href="inventory.html">คลังไอเท็ม</a>
+            <a href="house.html">สถานะบ้าน</a>
+            <a href="exploration.html">การสำรวจ</a>
+            <a href="injury.html">สุ่มการบาดเจ็บ</a>
+            </nav>
+        <!-- Menu button End -->
+    </nav>
+    <!-- Topbar End -->
+
+    <!-- page Start -->
+      <div class="page">
+
+        <!-- search tabs -->
+        <div>
+            <input id="characterSearch" placeholder="ค้นหาตัวละคร">
+        </div>
+
+        <!-- character sheets -->
+        <div class="character-grid" id="characterGrid"></div>
+      </div>
+     <!-- page End -->
+
+     <footer>MARRY HILLS ROLEPLAY · WEBSITE FOR ROLE-PLAY ONLY</footer>
+
+    
+    <script src="js/data.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/sheet-config.js"></script>
+    <script src="js/character.js"></script>
+    
+</body>
+</html>
