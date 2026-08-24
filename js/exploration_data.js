@@ -27,7 +27,7 @@ const ITEM_LIBRARY = {
  
 // พื้นที่สำรวจ —
 const AREAS = [
-  { id:"districtoffice", name:"ที่ว่าการเมือง", pool:["portableradio", "antler", "glass", "goldenkey"] },
-  { id:"forest",      name:"ป่าทิศเหนือ", pool:["antler", "bark", "feather", "brokenlocket"] },
-  { id:"oldchurch",        name:"โบสถ์ใหม่", pool:["glass", "bone", "feather", "ritualcloth"] }
+  { id:"districtoffice", name:"ที่ว่าการเมือง", pool:["portableradio", "goodnailbox", "badnailbox", "goodlighter"] },
+  { id:"forest",      name:"ป่าทิศเหนือ", pool:["expiredmilk", "oldnewspaper", "key", "vhstape"] },
+  { id:"oldchurch",        name:"โบสถ์ใหม่", pool:["Matchbox", "bigcandle", "badlighter", "cannedfood"] }
 ];
