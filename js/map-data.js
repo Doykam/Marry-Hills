@@ -49,7 +49,7 @@ const MAPS = [
     {
         id:"South_Marry_Hills",
         label:"South Marry Hills",
-        image:"Image/Map/South_marry_hills_map.png",
+        image:"image/Map/South_marry_hills_map.png",
         locations: [
             {
                 id:"OldChurch",
