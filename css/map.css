@@ -65,7 +65,7 @@
     color: #f2ede2;
     padding: 6px 12px;
     border-radius: 6px;
-    font-size: 13px;
+    font-size: 13px color:#f2ede2;
     white-space:nowrap ;
     opacity: 0;
     pointer-events: none;
