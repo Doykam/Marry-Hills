@@ -40,10 +40,11 @@
 .pin{
     position:absolute;
     transform: translate(-50%, -50%);
-    width: 30px;
-    height: 30px;
+    width: 20px;
+    height: 35px;
     background: #820506;
     border: 2px solid #f2ede2;
+    border-radius: 0;
     cursor: pointer;
     display: flex;
     align-items: center;
