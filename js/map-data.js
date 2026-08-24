@@ -10,7 +10,7 @@ const MAPS = [
                 name: "เมืองใหม่",
                 x:58.56,
                 y:16,
-                image:"#",
+                image:"image/test.jpg",
                 description: "เมืองที่ถูกสร้างขึ้นมาใหม่ บลา บลา บลา",
             },
             {
