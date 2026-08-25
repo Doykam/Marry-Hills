@@ -27,7 +27,7 @@
   border:none; border-radius:9px; padding:13px 28px;
   font-family:inherit; font-size:14px; letter-spacing:1px;
   cursor:pointer; font-weight:600;
-  background:linear-gradient(180deg,#c94a37,#9c3b2e); color:#fff;
+  background:linear-gradient(180deg,#9C0001,#9C0001); color:#fff;
 }
 .btn-primary:disabled{ background:#3a3a3a; color:#888; cursor:not-allowed; }
  
