@@ -7,6 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/injury.css">
     <title>Injury</title>
 </head>
 <body>
@@ -34,9 +35,34 @@
     </nav>
     <!-- Topbar End -->
 
+    <img src="image/MRH_background.png" alt="MARRY HILLS" class="background">
+
     <!-- page Start -->
       <div class="page">
-        <h1>เจ็บตัวคนดีของพี่ไง</h1>
+        <div class="form-card">
+            <h2>กรอกข้อมูลตัวละคร</h2>
+            <div class="field">
+                <label>ชื่อ-นามสกุลตัวละคร *</label>
+                <input id="charName" type="text" placeholder="เช่น สมคิด โชคร้าย">
+            </div>
+            <div class="field">
+                <label>ระดับความเจ็บ *</label>
+                <div class="severity-picker">
+                    <button type="button" class="severity-btn" data-severity="low">บาดเจ็บเล็กน้อย</button>
+                    <button type="button" class="severity-btn" data-severity="medium">บาดเจ็บปานกลาง</button>
+                    <button type="button" class="severity-btn" data-severity="high">บาดเจ็บรุนแรง</button>
+                </div>
+            </div>
+        </div>
+ 
+        <div class="center">
+            <button class="btn-primary" id="rollBtn">สุ่มการบาดเจ็บ</button>
+        </div>
+ 
+        <div id="warnBox"></div>
+        <div id="resultBox"></div>
+ 
+        <div id="historyTableWrap"></div>
       </div>
      <!-- page End -->
 
@@ -45,6 +71,8 @@
     
     <script src="js/data.js"></script>
     <script src="js/script.js"></script>
+    <script src="js/injury_data.js"></script>
+    <script src="js/injury.js"></script>
     
 </body>
 </html>
