@@ -1,0 +1,81 @@
+.dice-name-input{
+  max-width:500px; margin:0 auto 26px;
+}
+.dice-name-input input{
+  width:100%; padding:14px 18px; border-radius:10px;
+  border:1px solid #3a372f; background:#1c1a15; color:#eee;
+  font-family:inherit; font-size:14px; outline:none;
+}
+.dice-name-input input:focus{ border-color:#b89452; }
+ 
+/* -------------------------------------------------------------------------
+   การ์ดกล่องทอยเต๋า (พื้นแดงเข้ม + เลขทรงหกเหลี่ยมสีทองเรืองแสงตรงกลาง)
+------------------------------------------------------------------------- */
+.roll-card{
+  max-width:640px; margin:0 auto 24px;
+  background:linear-gradient(180deg,#2a0f0f,#1c0a0a);
+  border:1px solid #5a2a2a;
+  border-radius:14px;
+  padding:60px 20px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+ 
+.dice-hex{
+  width:110px; height:110px; position:relative;
+  filter: drop-shadow(0 0 18px rgba(230,180,60,0.55));
+}
+.hex-outer{
+  position:absolute; inset:0;
+  background:#c9a227;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+.hex-inner{
+  position:absolute; inset:6px;
+  background:#1c1a15;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  display:flex; align-items:center; justify-content:center;
+}
+.hex-number{
+  font-family:Georgia,serif; font-size:40px; font-weight:700; color:#e6c85c;
+}
+ 
+.center{ text-align:center; }
+.roll-btn{
+  background:linear-gradient(180deg,#f2c14e,#d9a12e);
+  color:#2a1a0a; font-weight:700; letter-spacing:2px;
+  border:none; border-radius:12px; padding:16px 56px; font-size:15px;
+  cursor:pointer; box-shadow:0 0 20px rgba(230,180,60,0.35);
+  font-family:inherit;
+}
+.roll-btn:hover{ filter:brightness(1.05); }
+ 
+.warn{
+  max-width:640px; margin:16px auto 0; text-align:center;
+  color:#d9a15c; font-size:13.5px; background:rgba(217,161,92,.08);
+  border:1px solid rgba(217,161,92,.25); padding:12px 16px; border-radius:8px;
+}
+ 
+.roll-badge{
+  display:inline-block; margin-top:14px; font-size:12px; font-weight:700;
+  letter-spacing:1px; padding:4px 14px; border-radius:20px;
+}
+.roll-badge.crit{ background:rgba(74,107,82,0.2); color:#8fbf98; }
+.roll-badge.fail{ background:rgba(156,59,46,0.2); color:#e08070; }
+ 
+/* -------------------------------------------------------------------------
+   ตารางประวัติการทอย
+------------------------------------------------------------------------- */
+table{
+  width:100%; border-collapse:collapse; background:#fbf8f0; color:#211f1a;
+  border-radius:10px; overflow:hidden; margin-top:36px;
+}
+th, td{ padding:12px 16px; text-align:left; font-size:13.5px; }
+th{ background:#efe8d6; font-size:11.5px; letter-spacing:.5px; text-transform:uppercase; color:#6b6656; }
+tr:not(:last-child) td{ border-bottom:1px solid #e7dfc9; }
+.result-num{ font-weight:700; }
+.result-num.crit{ color:#4a6b52; }
+.result-num.fail{ color:#9c3b2e; }
+ 
+.empty-note{ color:#8a8577; font-size:13px; text-align:center; padding:30px 0; }
