@@ -1,5 +1,6 @@
 
 const viewTabs = document.querySelectorAll('.view-tab');
+const categoryFilter = document.getElementById('categoryFilter');
 const itemsView = document.getElementById('itemsView');
 const historyView = document.getElementById('historyView');
  
@@ -17,6 +18,18 @@ viewTabs.forEach(function (tab) {
     historyView.style.display = (view === 'history') ? 'block' : 'none';
   });
 });
+
+const allCategories = new Set();
+Object.values(ITEM_LIBRARY).forEach(function (item) {
+  allCategories.add(item.category);
+});
+allCategories.forEach(function (cat) {
+  const o = document.createElement('option');
+  o.value = cat; o.textContent = cat;
+  categoryFilter.appendChild(o);
+});
+
+categoryFilter.addEventListener('change', renderItemsView);
  
  
 /* -------------------------------------------------------------------------
@@ -32,8 +45,9 @@ function renderItemsView() {
   HOUSE_NAMES.forEach(function (houseName) {
     // เอาเฉพาะ log ที่เป็นของทั่วไป (ไม่ rare) และเป็นของบ้านนี้
     const entriesForHouse = log.filter(function (e) {
-      return e.house === houseName && !e.rare;
-    });
+  const matchCategory = !categoryFilter.value || ITEM_LIBRARY[e.itemKey].category === categoryFilter.value;
+  return e.house === houseName && !e.rare && matchCategory;
+});
  
     // นับจำนวนแต่ละชนิดไอเทมในบ้านนี้ (key -> count)
     const counts = {};
@@ -51,6 +65,7 @@ function renderItemsView() {
         <div class="item-card">
           <img src="${item.image}" alt="${item.name}">
           <div class="item-card-name">${item.name}</div>
+          <div class="item-card-category">${item.category}</div>
           <div class="item-card-count">เก็บได้ ${counts[key]} ชิ้น</div>
         </div>
       `;
@@ -72,7 +87,10 @@ function renderItemsView() {
   rareSection.innerHTML = '';
  
   // หาว่าของหายากชนิดไหนบ้างที่เคยถูกเก็บ (เอาแค่ครั้งแรกที่เจอ เป็นคนคนแรกที่ครอบครอง)
-  const rareEntries = log.filter(function (e) { return e.rare; });
+  const rareEntries = log.filter(function (e) {
+  const matchCategory = !categoryFilter.value || ITEM_LIBRARY[e.itemKey].category === categoryFilter.value;
+  return e.rare && matchCategory;
+});
  
   const claimedRareKeys = [];
   rareEntries.forEach(function (e) {
@@ -96,6 +114,7 @@ function renderItemsView() {
       <div class="item-card rare">
         <img src="${item.image}" alt="${item.name}">
         <div class="item-card-name">${item.name}</div>
+        <div class="item-card-category">${item.category}</div>
         <div class="item-card-owner">เก็บโดย ${owner.character} (${owner.house})</div>
       </div>
     `;
