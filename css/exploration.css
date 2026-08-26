@@ -56,6 +56,15 @@
   position:absolute; top:8px; right:8px; background:#9c3b2e; color:#fff;
   font-size:10.5px; font-weight:700; padding:4px 10px; border-radius:20px;
 }
+.item-category{
+  display:inline-block;
+  font-size:11px;
+  color:#9c3b2e;
+  background:rgba(156,59,46,0.1);
+  padding:3px 10px;
+  border-radius:20px;
+  margin-bottom:8px;
+  }
 .result h3{ margin:0 0 4px; font-size:22px; font-family:Georgia,serif; }
 .result .tag{ font-size:11px; letter-spacing:2px; color:#9c3b2e; text-transform:uppercase; font-weight:700; margin-bottom:10px; }
 .result .item-name{ font-size:19px; font-weight:700; margin:4px 0 6px; font-family:Georgia,serif; }
