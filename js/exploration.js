@@ -106,6 +106,7 @@ function renderResult(area, item) {
         <div class="tag">ผลการสำรวจ · ${area.name}</div>
         <h3>คุณเจอกับ...</h3>
         <div class="item-name">${item.name}</div>
+        <div class="item-category">${item.category}</div>
         <div class="item-desc">${item.desc}</div>
       </div>
     </div>
