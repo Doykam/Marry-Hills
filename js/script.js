@@ -20,7 +20,7 @@ const CHARACTERS = [
     name: "โจนาธาน ฟอสเตอร์",
     letter: "1",
     accent: "#7fa7c9",
-    tags: ["แท็ก", "แท็ก"],
+    image: "",
     meta: [
       { label: "บทบาท", value: "นายอำเภอ" },
       { label: "อายุ", value: "42 ปี" },
@@ -32,7 +32,7 @@ const CHARACTERS = [
     name: "ชาล้อต",
     letter: "2",
     accent: "#444444",
-    tags: ["แท็ก", "แท็ก"],
+    image: "",
     meta: [
       { label: "บทบาท", value: "แม่ชี" },
       { label: "อายุ", value: "ปี" },
@@ -44,7 +44,7 @@ const CHARACTERS = [
     name: "ตัวละคร 3",
     letter: "3",
     accent: "#c98f7f",
-    tags: ["แท็ก", "แท็ก"],
+    image: "",
     meta: [
       { label: "บทบาท", value: "คนไร้บ้าน" },
       { label: "อายุ", value: "ปี" },
@@ -54,14 +54,21 @@ const CHARACTERS = [
   },
 ];
  
+
 const rail = document.getElementById("showcaseRail");
 const stage = document.getElementById("showcaseStage");
 const monogram = document.getElementById("stageMonogram");
+const stageImage = document.getElementById("stageImage");
 const panelQuote = document.getElementById("panelQuote");
-const panelTags = document.getElementById("panelTags");
 const panelName = document.getElementById("panelName");
+const panelAltName = document.getElementById("panelAltName");
 const panelMeta = document.getElementById("panelMeta");
 const panelDesc = document.getElementById("panelDesc");
+ 
+// ถ้ารูปโหลดไม่สำเร็จ (ยังไม่มีไฟล์จริง) ให้ซ่อนรูปทิ้ง จะได้เห็น monogram/พื้นหลังแทน
+stageImage.addEventListener("error", () => {
+  stageImage.style.display = "none";
+});
  
 // สร้างปุ่มวงกลมด้านซ้ายตามจำนวนตัวละคร
 CHARACTERS.forEach((char, index) => {
@@ -82,21 +89,23 @@ function selectCharacter(index) {
     btn.classList.toggle("is-active", i === index);
   });
  
-  // อัปเดตพื้นหลัง/ภาพประกอบ
+  // อัปเดตพื้นหลัง/ภาพประกอบ (พื้นหลัง/รูปทรงเดิมยังอยู่เหมือนเดิม แค่เปลี่ยนสีเน้น + รูป/monogram ด้านบน)
   stage.style.setProperty("--stage-accent", char.accent);
   monogram.textContent = char.letter;
+ 
+  if (char.image) {
+    stageImage.style.display = "block";
+    stageImage.src = char.image;
+    stageImage.alt = char.name;
+  } else {
+    stageImage.style.display = "none";
+    stageImage.removeAttribute("src");
+  }
  
   // อัปเดตการ์ดข้อมูล
   panelQuote.textContent = char.quote;
   panelName.textContent = char.name;
- 
-  panelTags.innerHTML = "";
-  char.tags.forEach((tag) => {
-    const span = document.createElement("span");
-    span.className = "tag";
-    span.textContent = tag;
-    panelTags.appendChild(span);
-  });
+  panelAltName.textContent = char.altName;
  
   panelMeta.innerHTML = "";
   char.meta.forEach((m) => {
