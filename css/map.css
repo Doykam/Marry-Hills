@@ -113,6 +113,10 @@
     font-size: 20px;
     font-family: Georgia,serif;
 }
+.MapModalDesc{
+  color: #d3d3d3;
+  font-size: 0.98rem;
+}
 .map-modal-body p{
     font-size: 14px;
     line-height: 1.7;
@@ -140,9 +144,4 @@
     color: #fff;
     font-size:16px ;
     cursor: pointer;
-}
-
-.MapModalDesc{
-    color: #d3d3d3;
-  font-size: 0.98rem;
 }
