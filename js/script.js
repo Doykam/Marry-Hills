@@ -19,7 +19,7 @@ const CHARACTERS = [
   {
     name: "โจนาธาน ฟอสเตอร์",
     letter: "1",
-    accent: "#f4c744",
+    accent: "#7fa7c9",
     tags: ["แท็ก", "แท็ก"],
     meta: [
       { label: "บทบาท", value: "นายอำเภอ" },
