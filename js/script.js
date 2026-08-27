@@ -17,6 +17,7 @@ overlay.addEventListener('click', function () {
 const CHARACTERS = [
   {
     name: "โจนาธาน ฟอสเตอร์",
+    altName: "Jonathan Foster",
     letter: "1",
     accent: "#7fa7c9",
     image: "",
@@ -29,6 +30,7 @@ const CHARACTERS = [
   },
   {
     name: "ชาล้อต",
+    altName: "Jonathan Foster",
     letter: "2",
     accent: "#444444",
     image: "",
@@ -41,6 +43,7 @@ const CHARACTERS = [
   },
   {
     name: "ตัวละคร 3",
+    altName: "Jonathan Foster",
     letter: "3",
     accent: "#c98f7f",
     image: "",
