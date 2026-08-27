@@ -498,13 +498,26 @@ body {
   .hero__rule { margin-left: auto; margin-right: auto; }
   .hero__desc { margin-left: auto; margin-right: auto; }
  
-  .showcase { grid-template-columns: 64px 1fr; min-height: 560px; }
-  .showcase__panel {
-    left: 64px;
-    max-width: none;
-    right: 0;
-    padding: 28px 20px 32px;
+  .showcase { grid-template-columns: 56px 1fr; min-height: 680px; }
+
+  /* ให้รูปตัวละครใหญ่ขึ้นและเห็นชัดขึ้นบนมือถือ */
+  .stage__image {
+    right: -2%;
+    height: 100%;
+    max-width: 92%;
   }
-  .panel__name { font-size: 1.5rem; }
-  .stage__monogram { font-size: clamp(5rem, 30vw, 9rem); }
+
+  /* กล่องข้อมูลเล็กลง ไม่กินพื้นที่เต็มจอ เพื่อให้เห็นรูปด้านหลัง */
+  .showcase__panel {
+    left: 56px;
+    right: auto;
+    max-width: 62%;
+    padding: 18px 14px 22px;
+    background: linear-gradient(0deg, rgba(23,31,41,0.95) 0%, rgba(23,31,41,0.8) 55%, rgba(23,31,41,0) 100%);
+  }
+  .panel__quote { font-size: 0.85rem; margin-bottom: 10px; }
+  .panel__name { font-size: 1.3rem; }
+  .panel__altname { font-size: 0.72rem; margin: 2px 0 10px; }
+  .panel__meta { font-size: 0.72rem; gap: 10px; margin-bottom: 10px; flex-wrap: wrap; }
+  .panel__desc p { font-size: 0.76rem; line-height: 1.5; }
 }
