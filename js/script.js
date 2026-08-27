@@ -31,7 +31,7 @@ const CHARACTERS = [
   {
     name: "ชาล้อต",
     letter: "2",
-    accent: "#7fa7c9",
+    accent: "#444444",
     tags: ["แท็ก", "แท็ก"],
     meta: [
       { label: "บทบาท", value: "แม่ชี" },
