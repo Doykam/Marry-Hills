@@ -388,7 +388,7 @@ body {
   opacity: 0.25;
 }
  
-/* ตัวอักษรย่อขนาดใหญ่แทนภาพประกอบจริง ไว้ก่อน */
+/* ตัวอักษรย่อขนาดใหญ่แทนภาพประกอบจริง ไว้ก่อน (เป็น fallback เวลายังไม่มีรูป หรือรูปโหลดไม่ขึ้น) */
 .stage__monogram {
   position: absolute;
   inset: 0;
@@ -401,6 +401,21 @@ body {
   font-size: clamp(8rem, 22vw, 16rem);
   color: rgba(244, 241, 234, 0.9);
   text-shadow: 0 20px 60px rgba(0,0,0,0.35);
+  z-index: 0;
+}
+ 
+/* รูปตัวละครจริง: วางทับอยู่หน้าพื้นหลัง/monogram ถ้ายังไม่มี src หรือโหลดไม่สำเร็จจะถูกซ่อน (ดูสคริปต์ onerror ใน script.js) */
+.stage__image {
+  position: absolute;
+  z-index: 1;
+  bottom: 0;
+  right: 6%;
+  height: 92%;
+  width: auto;
+  max-width: 60%;
+  object-fit: contain;
+  object-position: bottom;
+  filter: drop-shadow(0 20px 40px rgba(0,0,0,0.4));
 }
  
 /* --- การ์ดข้อมูลตัวละคร มุมล่างซ้าย --- */
@@ -423,26 +438,20 @@ body {
   margin: 0 0 16px;
 }
  
-.panel__tags {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 14px;
-}
-.panel__tags .tag {
-  font-size: 0.72rem;
-  letter-spacing: 0.04em;
-  padding: 4px 10px;
-  border-radius: 999px;
-  border: 1px solid rgba(244, 241, 234, 0.3);
-  color: #f4f1ea;
-  opacity: 0.85;
-}
- 
 .panel__name {
   font-family: var(--font-display);
   font-weight: 600;
   font-size: 2rem;
-  margin: 0 0 12px;
+  margin: 0;
+}
+ 
+/* ชื่ออีกภาษา (เช่น ชื่อภาษาอังกฤษ/ชื่อจริง) เล็กกว่าและจางกว่าชื่อหลัก */
+.panel__altname {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  color: rgba(244, 241, 234, 0.6);
+  margin: 4px 0 16px;
 }
  
 .panel__meta {
