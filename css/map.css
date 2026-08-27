@@ -113,7 +113,7 @@
     font-size: 20px;
     font-family: Georgia,serif;
 }
-.MapModalDesc{
+#MapModalDesc{
   color: #d3d3d3;
   font-size: 0.98rem;
 }
