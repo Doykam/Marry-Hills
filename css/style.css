@@ -423,10 +423,10 @@ body {
   position: absolute;
   z-index: 1;
   bottom: 0;
-  right: 6%;
-  height: 92%;
+  right: 3%;
+  height: 105%;
   width: auto;
-  max-width: 60%;
+  max-width: 75%;
   object-fit: contain;
   object-position: bottom;
   filter: drop-shadow(0 20px 40px rgba(0,0,0,0.4));
