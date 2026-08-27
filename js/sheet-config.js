@@ -1,1 +1,1 @@
-const CHARACTER_SHEET_CSV_URL = "#";
+const CHARACTER_SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRPWF3_DfZUkskVnjfSPe2LrpS4TXdyg3aGzbB2UpphDDDxu_KiO5XAjkTwQWz0JHrDMPMo-pswZJ1w/pub?gid=628093024&single=true&output=csv";
