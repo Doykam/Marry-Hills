@@ -58,7 +58,6 @@ const CHARACTERS = [
 
 const rail = document.getElementById("showcaseRail");
 const stage = document.getElementById("showcaseStage");
-const monogram = document.getElementById("stageMonogram");
 const stageImage = document.getElementById("stageImage");
 const panelQuote = document.getElementById("panelQuote");
 const panelName = document.getElementById("panelName");
@@ -76,9 +75,24 @@ CHARACTERS.forEach((char, index) => {
   const btn = document.createElement("button");
   btn.type = "button";
   btn.className = "rail__avatar" + (index === 0 ? " is-active" : "");
-  btn.textContent = char.letter;
   btn.setAttribute("aria-label", char.name);
   btn.addEventListener("click", () => selectCharacter(index));
+
+  if (char.image) {
+    // มีรูปตัวละคร -> ใส่รูปให้พอดีวงกลม (ถ้ารูปโหลดไม่สำเร็จ ให้ fallback กลับไปเป็นตัวเลข)
+    const img = document.createElement("img");
+    img.src = char.image;
+    img.alt = char.name;
+    img.addEventListener("error", () => {
+      img.remove();
+      btn.textContent = char.letter;
+    });
+    btn.appendChild(img);
+  } else {
+    // ยังไม่มีรูป -> โชว์ตัวเลขไปก่อน
+    btn.textContent = char.letter;
+  }
+
   rail.appendChild(btn);
 });
  
@@ -90,9 +104,8 @@ function selectCharacter(index) {
     btn.classList.toggle("is-active", i === index);
   });
  
-  // อัปเดตพื้นหลัง/ภาพประกอบ (พื้นหลัง/รูปทรงเดิมยังอยู่เหมือนเดิม แค่เปลี่ยนสีเน้น + รูป/monogram ด้านบน)
+  // อัปเดตพื้นหลัง/ภาพประกอบ (พื้นหลัง/รูปทรงเดิมยังอยู่เหมือนเดิม แค่เปลี่ยนสีเน้น)
   stage.style.setProperty("--stage-accent", char.accent);
-  monogram.textContent = char.letter;
  
   if (char.image) {
     stageImage.style.display = "block";
