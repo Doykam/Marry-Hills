@@ -130,6 +130,44 @@
          <p>อุทยาน & ทะเลสาบ (Lake & National Park Gate) ทะเลสาบขนาดใหญ่ลึกเข้าไปในป่าสน มีบ้านพักตากอากาศ (Cabins) ปิดร้างไว้ช่วงฤดูฝน และมีหอเฝ้าระวังไฟป่า (Fire Lookout Tower) ตั้งสง่าอยู่บนยอดเขา</p>
       </div>
     </div>
+
+    
+  <!-- ============================================
+       CHARACTER SHOWCASE (แนะนำตัวละคร 3 ตัว)
+       - แถบวงกลมด้านซ้าย กดแล้วสลับตัวละคร
+       - ภาพประกอบ + การ์ดข้อมูลด้านล่างซ้าย เปลี่ยนตามตัวละครที่เลือก
+       - เนื้อหาจริงยังไม่ใส่ ตอนนี้เป็น placeholder ทั้งหมด แก้ได้ที่ array
+         CHARACTERS ในไฟล์ script.js
+  ============================================= -->
+  <section class="showcase" id="showcase">
+    <!-- แถบเลือกตัวละครด้านซ้าย -->
+    <div class="showcase__rail" id="showcaseRail">
+      <!-- ปุ่มวงกลมจะถูกสร้างจาก JS ตามจำนวนตัวละครใน CHARACTERS -->
+    </div>
+ 
+    <!-- พื้นหลัง/ภาพประกอบตัวละคร (placeholder เพราะยังไม่มีภาพจริง) -->
+    <div class="showcase__stage" id="showcaseStage">
+      <div class="stage__shape stage__shape--a" aria-hidden="true"></div>
+      <div class="stage__shape stage__shape--b" aria-hidden="true"></div>
+      <div class="stage__monogram" id="stageMonogram">?</div>
+    </div>
+ 
+    <!-- การ์ดข้อมูลตัวละคร มุมล่างซ้าย -->
+    <div class="showcase__panel">
+      <p class="panel__quote" id="panelQuote">“…”</p>
+ 
+      <div class="panel__tags" id="panelTags"><!-- แท็ก faction/race ใส่จาก JS --></div>
+ 
+      <h3 class="panel__name" id="panelName">ตัวละคร</h3>
+ 
+      <div class="panel__meta" id="panelMeta"><!-- role/สังกัด ใส่จาก JS --></div>
+ 
+      <div class="panel__desc" id="panelDesc">
+        <p>ยังไม่มีข้อมูลตัวละคร — รอใส่เนื้อหาทีหลัง</p>
+      </div>
+    </div>
+  </section>
+
     </div>
      <!-- page End -->
 
