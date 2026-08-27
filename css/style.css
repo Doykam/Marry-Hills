@@ -279,19 +279,6 @@ body {
   overflow: hidden;
 }
  
-/* มุมกระดาษพับที่ล่างซ้าย อ้างอิงจากภาพต้นแบบ - ทำแบบง่าย ๆ ด้วย gradient สามเหลี่ยม */
-.about__page-corner {
-  position: absolute;
-  left: -60px;
-  bottom: -40px;
-  width: 180px;
-  height: 180px;
-  background: linear-gradient(135deg, #efe9db, #d8cfb8);
-  clip-path: polygon(0 100%, 100% 100%, 0 0);
-  box-shadow: 6px -6px 24px rgba(0,0,0,0.08);
-  z-index: 0;
-}
- 
 .about__inner {
   position: relative;
   z-index: 1;
@@ -323,32 +310,158 @@ body {
 }
  
 /* ===============================
-   ตัวละคร 3 ตัว (placeholder เท่านั้น)
+   CHARACTER SHOWCASE
+   โครง: แถบซ้าย (rail) + พื้นหลังภาพประกอบ (stage) + การ์ดข้อมูลมุมล่างซ้าย (panel)
    =============================== */
-.characters { margin-top: 64px; }
+.showcase {
+  position: relative;
+  display: grid;
+  grid-template-columns: 84px 1fr;
+  min-height: 640px;
+  background: var(--navy);
+  overflow: hidden;
+}
  
-.characters__title {
+/* --- แถบวงกลมด้านซ้าย --- */
+.showcase__rail {
+  position: relative;
+  z-index: 3;
+  background: var(--navy-soft);
+  border-right: 1px solid rgba(244, 241, 234, 0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  padding: 28px 0;
+}
+ 
+.rail__avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 2px solid rgba(244, 241, 234, 0.25);
+  background: var(--navy);
+  color: #f4f1ea;
   font-family: var(--font-display);
   font-style: italic;
-  font-size: 1.2rem;
-  margin: 0 0 20px;
+  font-size: 1.05rem;
+  cursor: pointer;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+.rail__avatar:hover { transform: translateY(-2px); }
+.rail__avatar:focus-visible { outline: 2px solid var(--yellow); outline-offset: 2px; }
+ 
+.rail__avatar.is-active {
+  border-color: var(--yellow);
+  box-shadow: 0 0 0 3px rgba(244, 199, 68, 0.2);
 }
  
-.characters__grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+/* --- พื้นหลัง/ภาพประกอบ (placeholder ยังไม่มีภาพจริง) --- */
+.showcase__stage {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(160deg, #2a3644 0%, #1e2733 55%, #171f29 100%);
+  transition: background 0.4s ease;
 }
  
-.character-card--empty {
-  border: 1px dashed var(--line);
-  border-radius: 6px;
-  min-height: 160px;
+/* รูปทรงสีสันแบบ diagonal เพื่อให้มีมิติเหมือนภาพต้นแบบ (เปลี่ยนสีได้ผ่าน CSS variable --stage-accent) */
+.stage__shape {
+  position: absolute;
+  opacity: 0.55;
+  transition: background 0.4s ease;
+}
+.stage__shape--a {
+  top: -15%;
+  right: -10%;
+  width: 60%;
+  height: 130%;
+  background: var(--stage-accent, var(--yellow));
+  clip-path: polygon(35% 0%, 100% 0%, 65% 100%, 0% 100%);
+  opacity: 0.85;
+}
+.stage__shape--b {
+  bottom: -20%;
+  right: 8%;
+  width: 40%;
+  height: 80%;
+  background: radial-gradient(circle at 50% 50%, var(--stage-accent, var(--yellow)) 0%, transparent 70%);
+  opacity: 0.25;
+}
+ 
+/* ตัวอักษรย่อขนาดใหญ่แทนภาพประกอบจริง ไว้ก่อน */
+.stage__monogram {
+  position: absolute;
+  inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--ink-soft);
-  font-size: 0.85rem;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 600;
+  font-size: clamp(8rem, 22vw, 16rem);
+  color: rgba(244, 241, 234, 0.9);
+  text-shadow: 0 20px 60px rgba(0,0,0,0.35);
+}
+ 
+/* --- การ์ดข้อมูลตัวละคร มุมล่างซ้าย --- */
+.showcase__panel {
+  position: absolute;
+  left: 84px;
+  bottom: 0;
+  z-index: 2;
+  max-width: 460px;
+  padding: 40px 48px 48px 40px;
+  background: linear-gradient(0deg, rgba(23,31,41,0.92) 0%, rgba(23,31,41,0.55) 70%, transparent 100%);
+  color: #f4f1ea;
+}
+ 
+.panel__quote {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--yellow);
+  margin: 0 0 16px;
+}
+ 
+.panel__tags {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+.panel__tags .tag {
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(244, 241, 234, 0.3);
+  color: #f4f1ea;
+  opacity: 0.85;
+}
+ 
+.panel__name {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 2rem;
+  margin: 0 0 12px;
+}
+ 
+.panel__meta {
+  display: flex;
+  gap: 18px;
+  font-size: 0.82rem;
+  color: rgba(244, 241, 234, 0.75);
+  margin-bottom: 16px;
+}
+.panel__meta span strong {
+  color: #f4f1ea;
+  font-weight: 600;
+}
+ 
+.panel__desc p {
+  font-size: 0.88rem;
+  line-height: 1.65;
+  color: rgba(244, 241, 234, 0.8);
+  margin: 0;
 }
  
 /* ===============================
@@ -361,5 +474,14 @@ body {
   }
   .hero__rule { margin-left: auto; margin-right: auto; }
   .hero__desc { margin-left: auto; margin-right: auto; }
-  .characters__grid { grid-template-columns: 1fr; }
+ 
+  .showcase { grid-template-columns: 64px 1fr; min-height: 560px; }
+  .showcase__panel {
+    left: 64px;
+    max-width: none;
+    right: 0;
+    padding: 28px 20px 32px;
+  }
+  .panel__name { font-size: 1.5rem; }
+  .stage__monogram { font-size: clamp(5rem, 30vw, 9rem); }
 }
