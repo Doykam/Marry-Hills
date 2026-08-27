@@ -5,7 +5,7 @@ const HOUSES = [
         health: 5,
         maxHealth: 5,
         image: "image/Map/church.png",
-        bloodIcon: "image/blood.png",
+        bloodIcon: "image/hp.png",
         description: "ที่นี่คือโบสถ์คาทอลิกฝั่งเมืองเก่า เมื่อก่อนถูกใช้โดยปกติ มีทั้งบาทหลวงและแม่ชีคอยดูแล แต่ในปัจจุบันคนเข้าออกมีเพียงคนจากทางฝั่งเมืองเก่าเป็นหลัก ยังคงมีคุณพ่อคอยให้คำปรึกษาและทำพิธีทางศาสนา เช่น ในทุกเช้าวันอาทิตย์"
     },
     {
@@ -14,7 +14,7 @@ const HOUSES = [
         health: 5,
         maxHealth: 5,
         image: "image/Map/radiostation.png",
-        bloodIcon: "image/blood.png",
+        bloodIcon: "image/hp.png",
         description: "ทำหน้าที่ผลิตและส่งสัญญาณคลื่นวิทยุออกอากาศเป็นเสียง เพลง ข่าวสาร หรือรายการต่าง ๆ ไปยังเครื่องรับวิทยุของผู้ฟังจำนวนมากพร้อมกัน"
     },
     {
@@ -23,7 +23,7 @@ const HOUSES = [
         health: 5,
         maxHealth: 5,
         image: "image/Map/firelookoutstation.png",
-        bloodIcon: "image/blood.png",
+        bloodIcon: "image/hp.png",
         description: "สิ่งปลูกสร้างที่มีลักษณะเป็นหอคอยสูง ตั้งอยู่บริเวณที่ใกล้กับที่จอดรถฝั่งเมืองเก่า เพื่อใช้เป็นจุดสังเกตการณ์ คอยตรวจจับควันไฟ หรือสัญญาณของไฟป่า ตั้งแต่เนิ่นๆ ช่วยให้เจ้าหน้าที่สามารถระบุพิกัดและเข้าควบคุมสถานการณ์ได้อย่างทันท่วงที"
     }
 ];
