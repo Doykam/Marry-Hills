@@ -14,7 +14,6 @@ overlay.addEventListener('click', function () {
   overlay.classList.remove('open');
 });
 
-
 const CHARACTERS = [
   {
     name: "โจนาธาน ฟอสเตอร์",
@@ -54,7 +53,6 @@ const CHARACTERS = [
   },
 ];
  
-
 const rail = document.getElementById("showcaseRail");
 const stage = document.getElementById("showcaseStage");
 const monogram = document.getElementById("stageMonogram");
