@@ -20,7 +20,7 @@ const CHARACTERS = [
     altName: "Jonathan Foster",
     letter: "1",
     accent: "#7fa7c9",
-    image: "",
+    image: "image/jonathanfoster.jpg",
     meta: [
       { label: "บทบาท", value: "นายอำเภอ" },
       { label: "อายุ", value: "42 ปี" },
@@ -30,7 +30,7 @@ const CHARACTERS = [
   },
   {
     name: "ชาล้อต",
-    altName: "Jonathan Foster",
+    altName: "Charlotte",
     letter: "2",
     accent: "#444444",
     image: "",
@@ -42,8 +42,8 @@ const CHARACTERS = [
     desc: ["เธอเป็นแม่ชีที่มาประจำที่นี่ได้ไม่นานนัก 5-6 ปีเธออาศัยและถือศีลที่โบสถ์เก่า ผู้คนจะพบเธอได้ในช่วงของงานทางศาสนาที่โบสถ์ หรือพิธีมิสซาตอนเช้า ในบางครั้งจะพบเธอที่โบสถ์ใหม่บ้าง แต่ไม่บ่อยนัก เธอเป็นคนเงียบเชียบ หน้าตาไร้อารมณ์ และไม่สุงสิงหรือยิ้มแย้มเท่าไหร่"],
   },
   {
-    name: "ตัวละคร 3",
-    altName: "Jonathan Foster",
+    name: "ลัคกี้",
+    altName: "Lucky",
     letter: "3",
     accent: "#c98f7f",
     image: "",
