@@ -20,7 +20,7 @@ const CHARACTERS = [
     altName: "Jonathan Foster",
     letter: "1",
     accent: "#7fa7c9",
-    image: "image/jonathanfoster.jpg",
+    image: "image/jonathanfoster.png",
     meta: [
       { label: "บทบาท", value: "นายอำเภอ" },
       { label: "อายุ", value: "42 ปี" },
