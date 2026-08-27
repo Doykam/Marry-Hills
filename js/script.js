@@ -55,7 +55,7 @@ const CHARACTERS = [
     desc: ["เขาเป็นชายวัยกลางคนที่ดูเพี้ยนๆ มีนิสัยเดินเตร็ดเตร่อยู่ตามชายป่า และแถบ uptown  เขาเป็นชายที่ดูอารมณ์ไม่คงที่ และบางทีมักจะวิ่งบ่าเข้าหาผู้คนหรือทำให้เด็กตกใจ  ชาวเมืองไม่ค่อยชอบเขานัก ตำรวจและเทศบาลพยายามหาที่พักให้เขาแต่สุดท้ายเขาก็ลอบออกมามาศัยแบบนี้อยู่ดี"],
   },
 ];
- 
+
 const rail = document.getElementById("showcaseRail");
 const stage = document.getElementById("showcaseStage");
 const monogram = document.getElementById("stageMonogram");
