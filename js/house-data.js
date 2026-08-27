@@ -5,7 +5,7 @@ const HOUSES = [
         health: 5,
         maxHealth: 5,
         Image: "#",
-        bloodIcon: "image/Blood.png",
+        bloodIcon: "image/blood.png",
         description: "bra bra bra bra bra"
     },
     {
@@ -14,7 +14,7 @@ const HOUSES = [
         health: 5,
         maxHealth: 5,
         Image: "#",
-        bloodIcon: "image/Blood.png",
+        bloodIcon: "image/blood.png",
         description: "bra bra bra bra bra"
     },
     {
@@ -23,7 +23,7 @@ const HOUSES = [
         health: 5,
         maxHealth: 5,
         Image: "#",
-        bloodIcon: "image/Blood.png",
+        bloodIcon: "image/blood.png",
         description: "bra bra bra bra bra"
     }
 ];
