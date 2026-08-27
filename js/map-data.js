@@ -216,7 +216,7 @@ const MAPS = [
                 name:"สุสาน",
                 x:95.3,
                 y:22.5,
-                image:"oldtomb.png",
+                image:"image/detail/oldtomb.png",
                 description:"เป็นพื้นที่สำหรับประกอบพิธีทางศาสนา การฝังศพ และการระลึกถึงผู้ที่จากไป",
             },
             {
