@@ -45,7 +45,7 @@ const CHARACTERS = [
     name: "Lucky",
     altName: "ลัคกี้",
     letter: "3",
-    accent: "#c98f7f",
+    accent: "#424D4C",
     image: "image/Lucky.png",
     meta: [
       { label: "บทบาท", value: "คนไร้บ้าน" },
