@@ -1,5 +1,3 @@
-const INJURY_LOG_KEY = "wtm_injury_log_v1";
- 
 const charNameInput = document.getElementById('charName');
 const severityBtns = document.querySelectorAll('.severity-btn');
 const rollBtn = document.getElementById('rollBtn');
@@ -26,22 +24,37 @@ severityBtns.forEach(function (btn) {
 /* -------------------------------------------------------------------------
    ที่เก็บ/อ่าน log (เก็บในไฟล์นี้ไฟล์เดียว เพราะใช้แค่หน้านี้หน้าเดียว)
 ------------------------------------------------------------------------- */
-function loadInjuryLog() {
-  try {
-    return JSON.parse(localStorage.getItem(INJURY_LOG_KEY)) || [];
-  } catch (e) {
-    return [];
-  }
+function severityKeyFromLabel(label) {
+  return Object.keys(SEVERITY_LABELS).find(function (k) { return SEVERITY_LABELS[k] === label; });
 }
-function saveInjuryLog(log) {
-  localStorage.setItem(INJURY_LOG_KEY, JSON.stringify(log));
+function mapInjuryRow(row) {
+  return {
+    character: row["ตัวละคร"],
+    severity: severityKeyFromLabel(row["ระดับ"]),
+    severityLabel: row["ระดับ"],
+    injuryText: row["อาการ"]
+  };
+}
+async function loadInjuryLog() {
+  const res = await fetch(APPS_SCRIPT_URL + "?action=injury");
+  const rows = await res.json();
+  return rows.map(mapInjuryRow);
+}
+async function saveInjuryEntry(entry) {
+  await fetch(APPS_SCRIPT_URL, {
+    method: "POST",
+    body: JSON.stringify({
+      action: "injury",
+      data: { "ตัวละคร": entry.character, "ระดับ": entry.severityLabel, "อาการ": entry.injuryText }
+    })
+  });
 }
  
  
 /* -------------------------------------------------------------------------
    ปุ่มสุ่ม
 ------------------------------------------------------------------------- */
-rollBtn.addEventListener('click', function () {
+rollBtn.addEventListener('click', async function () {
   const name = charNameInput.value.trim();
   warnBox.innerHTML = '';
  
@@ -58,21 +71,17 @@ rollBtn.addEventListener('click', function () {
   const pool = INJURY_POOLS[selectedSeverity];
   const injuryText = pool[Math.floor(Math.random() * pool.length)];
  
-  const entry = {
+    const entry = {
     character: name,
     severity: selectedSeverity,
     severityLabel: SEVERITY_LABELS[selectedSeverity],
-    injuryText: injuryText,
-    ts: Date.now()
+    injuryText: injuryText
   };
- 
-  const log = loadInjuryLog();
-  log.unshift(entry);
-  saveInjuryLog(log);
- 
+
+  await saveInjuryEntry(entry);
+
   renderResult(entry);
-  renderHistory();
-});
+  await renderHistory();
  
  
 /* -------------------------------------------------------------------------
@@ -91,8 +100,8 @@ function renderResult(entry) {
 /* -------------------------------------------------------------------------
    วาดตารางประวัติทั้งหมด (เรียกทั้งตอนโหลดหน้าครั้งแรก และหลังสุ่มทุกครั้ง)
 ------------------------------------------------------------------------- */
-function renderHistory() {
-  const log = loadInjuryLog();
+async function renderHistory() {
+  const log = await loadInjuryLog();
  
   if (log.length === 0) {
     historyWrap.innerHTML = '<div class="empty-note">ยังไม่มีประวัติการบาดเจ็บ</div>';
