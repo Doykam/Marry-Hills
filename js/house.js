@@ -49,32 +49,32 @@ HOUSES.forEach(function (house) {
       icon.classList.add('empty');
     }
 
-const itemsWrap = document.getElementById('houseItems-' + house.id);
-
-const counts = {};
-log.filter(function (e) {
-  return e.house === house.name && !e.rare;   // เอาเฉพาะของทั่วไป ของบ้านนี้เท่านั้น
-}).forEach(function (e) {
-  counts[e.itemKey] = (counts[e.itemKey] || 0) + 1;
-});
-
-const itemKeys = Object.keys(counts);
-if (itemKeys.length === 0) {
-  itemsWrap.innerHTML = '<div class="empty-note">ยังไม่มีของที่เก็บได้</div>';
-} else {
-  itemsWrap.innerHTML = itemKeys.map(function (key) {
-    const item = ITEM_LIBRARY[key];
-    return `
-      <div class="item-card">
-        <img src="${item.image}" alt="${item.name}">
-        <div class="item-card-name">${item.name}</div>
-        <div class="item-card-count">เก็บได้ ${counts[key]} ชิ้น</div>
-      </div>
-    `;
-  }).join('');
-}
- 
     iconsWrap.appendChild(icon);
+  }
+
+  const itemsWrap = document.getElementById('houseItems-' + house.id);
+
+  const counts = {};
+  log.filter(function (e) {
+    return e.house === house.name && !e.rare;   // เอาเฉพาะของทั่วไป ของบ้านนี้เท่านั้น
+  }).forEach(function (e) {
+    counts[e.itemKey] = (counts[e.itemKey] || 0) + 1;
+  });
+
+  const itemKeys = Object.keys(counts);
+  if (itemKeys.length === 0) {
+    itemsWrap.innerHTML = '<div class="empty-note">ยังไม่มีของที่เก็บได้</div>';
+  } else {
+    itemsWrap.innerHTML = itemKeys.map(function (key) {
+      const item = ITEM_LIBRARY[key];
+      return `
+        <div class="item-card">
+          <img src="${item.image}" alt="${item.name}">
+          <div class="item-card-name">${item.name}</div>
+          <div class="item-card-count">เก็บได้ ${counts[key]} ชิ้น</div>
+        </div>
+      `;
+    }).join('');
   }
  
 });
