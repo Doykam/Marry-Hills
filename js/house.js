@@ -3,9 +3,7 @@ const housesContainer = document.getElementById('housesContainer');
  
 
 (async function () {
-
 const log = await loadExploreLog();
-
 HOUSES.forEach(function (house) {
  
   // 1) สร้างกล่องแม่ของบ้านนี้ 1 หลัง (ครอบทั้งหัวข้อ + เลือด + รูป + คำอธิบาย)
