@@ -35,8 +35,8 @@ categoryFilter.addEventListener('change', renderItemsView);
 /* -------------------------------------------------------------------------
    วาดมุมมอง "ไอเทมที่เก็บได้"
 ------------------------------------------------------------------------- */
-function renderItemsView() {
-  const log = loadExploreLog();
+async function renderItemsView() {
+  const log = await loadExploreLog();
  
   // ---- ส่วนที่ 1: ของทั่วไป แยกตามบ้าน ----
   const houseSection = document.getElementById('itemsByHouse');
@@ -127,8 +127,8 @@ function renderItemsView() {
 /* -------------------------------------------------------------------------
    วาดมุมมอง "ประวัติการสำรวจ"
 ------------------------------------------------------------------------- */
-function renderHistoryView() {
-  const log = loadExploreLog();
+async function renderHistoryView() {
+  const log = await loadExploreLog();
   const wrap = document.getElementById('historyTableWrap');
  
   if (log.length === 0) {
@@ -157,5 +157,4 @@ function renderHistoryView() {
  
  
 // วาดทั้ง 2 มุมมองไว้ล่วงหน้าตอนโหลดหน้า (มุมมองที่ไม่ active จะถูกซ่อนด้วย CSS display:none อยู่แล้ว)
-renderItemsView();
-renderHistoryView();
+Promise.all([renderItemsView(), renderHistoryView()]);
