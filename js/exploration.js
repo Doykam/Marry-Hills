@@ -28,7 +28,7 @@ AREAS.forEach(function (a) {
 /* -------------------------------------------------------------------------
    ปุ่มสำรวจ
 ------------------------------------------------------------------------- */
-exploreBtn.addEventListener('click', function () {
+exploreBtn.addEventListener('click', async function () {
  
   // กันสำรวจซ้ำในการเข้าเว็บรอบเดียวกัน
   if (hasExploredThisVisit) {
@@ -50,7 +50,7 @@ exploreBtn.addEventListener('click', function () {
   const area = AREAS.find(function (a) { return a.id === areaId; });
  
   // ไอเทมหายากที่ถูกเก็บไปแล้ว (คำนวณจาก log ทั้งหมด)
-  const log = loadExploreLog();
+  const log = await loadExploreLog();
   const claimedRare = new Set(
     log.filter(function (e) { return e.rare; }).map(function (e) { return e.itemKey; })
   );
@@ -73,19 +73,17 @@ const resultKey = availablePool[Math.floor(Math.random() * availablePool.length)
   const item = ITEM_LIBRARY[resultKey];
  
   // บันทึกผลลง log ทันที
-  addExploreLogEntry({
+ hasExploredThisVisit = true;
+  exploreBtn.disabled = true;
+  await addExploreLogEntry({
     character: name,
     house: house,
-    areaId: area.id,
     areaName: area.name,
     itemKey: resultKey,
     itemName: item.name,
     rare: item.rare,
-    ts: Date.now()
   });
  
-  hasExploredThisVisit = true;
-  exploreBtn.disabled = true;
   exploreBtn.textContent = 'สำรวจไปแล้วในรอบนี้';
  
   renderResult(area, item);
