@@ -1,6 +1,3 @@
-
-const DICE_LOG_KEY = "wtm_dice_log_v1";
- 
 const rollerNameInput = document.getElementById('rollerName');
 const rollBtn = document.getElementById('rollBtn');
 const warnBox = document.getElementById('warnBox');
@@ -12,22 +9,29 @@ const historyWrap = document.getElementById('historyTableWrap');
 /* -------------------------------------------------------------------------
    ที่เก็บ/อ่าน log (ใช้แค่หน้านี้หน้าเดียว เลยเขียนรวมไว้ในไฟล์เดียวเลย)
 ------------------------------------------------------------------------- */
-function loadDiceLog() {
-  try {
-    return JSON.parse(localStorage.getItem(DICE_LOG_KEY)) || [];
-  } catch (e) {
-    return [];
-  }
+function mapDiceRow(row) {
+  return { character: row["ผู้ทอย"], result: Number(row["ผลที่ได้ (1d20)"]) };
 }
-function saveDiceLog(log) {
-  localStorage.setItem(DICE_LOG_KEY, JSON.stringify(log));
+async function loadDiceLog() {
+  const res = await fetch(APPS_SCRIPT_URL + "?action=dice");
+  const rows = await res.json();
+  return rows.map(mapDiceRow);
+}
+async function saveDiceEntry(entry) {
+  await fetch(APPS_SCRIPT_URL, {
+    method: "POST",
+    body: JSON.stringify({
+      action: "dice",
+      data: { "ผู้ทอย": entry.character, "ผลที่ได้ (1d20)": entry.result }
+    })
+  });
 }
  
  
 /* -------------------------------------------------------------------------
    ปุ่ม ROLL
 ------------------------------------------------------------------------- */
-rollBtn.addEventListener('click', function () {
+rollBtn.addEventListener('click', async function () {
   const name = rollerNameInput.value.trim();
   warnBox.innerHTML = '';
  
@@ -48,21 +52,19 @@ rollBtn.addEventListener('click', function () {
     resultBadgeBox.innerHTML = '<span class="roll-badge fail">CRITICAL FAIL</span>';
   }
  
-  const entry = { character: name, result: result, ts: Date.now() };
- 
-  const log = loadDiceLog();
-  log.unshift(entry);
-  saveDiceLog(log);
- 
-  renderHistory();
+    const entry = { character: name, result: result };
+
+  await saveDiceEntry(entry);
+
+  await renderHistory();
 });
  
  
 /* -------------------------------------------------------------------------
    วาดตารางประวัติทั้งหมด
 ------------------------------------------------------------------------- */
-function renderHistory() {
-  const log = loadDiceLog();
+async function renderHistory() {
+  const log = await loadDiceLog();
  
   if (log.length === 0) {
     historyWrap.innerHTML = '<div class="empty-note">ยังไม่มีประวัติการทอย</div>';
