@@ -64,7 +64,7 @@ rollBtn.addEventListener('click', async function () {
    วาดตารางประวัติทั้งหมด
 ------------------------------------------------------------------------- */
 async function renderHistory() {
-  const log = await loadDiceLog();
+  const log = (await loadDiceLog()).reverse();
  
   if (log.length === 0) {
     historyWrap.innerHTML = '<div class="empty-note">ยังไม่มีประวัติการทอย</div>';
