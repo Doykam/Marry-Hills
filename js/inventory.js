@@ -36,7 +36,7 @@ categoryFilter.addEventListener('change', renderItemsView);
    วาดมุมมอง "ไอเทมที่เก็บได้"
 ------------------------------------------------------------------------- */
 async function renderItemsView() {
-  const log = await loadExploreLog();
+  const log = (await loadExploreLog()).reverse();
  
   // ---- ส่วนที่ 1: ของทั่วไป แยกตามบ้าน ----
   const houseSection = document.getElementById('itemsByHouse');
