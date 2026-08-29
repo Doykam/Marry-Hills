@@ -82,7 +82,7 @@ rollBtn.addEventListener('click', async function () {
 
   renderResult(entry);
   await renderHistory();
- 
+ });
  
 /* -------------------------------------------------------------------------
    โชว์ผลล่าสุด
