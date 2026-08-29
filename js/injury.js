@@ -101,7 +101,7 @@ function renderResult(entry) {
    วาดตารางประวัติทั้งหมด (เรียกทั้งตอนโหลดหน้าครั้งแรก และหลังสุ่มทุกครั้ง)
 ------------------------------------------------------------------------- */
 async function renderHistory() {
-  const log = await loadInjuryLog();
+  const log = (await loadInjuryLog()).reverse();
  
   if (log.length === 0) {
     historyWrap.innerHTML = '<div class="empty-note">ยังไม่มีประวัติการบาดเจ็บ</div>';
