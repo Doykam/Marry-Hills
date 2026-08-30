@@ -11,7 +11,7 @@ const HOUSES = [
     {
         id: "radio-station",
         name: "สถานีวิทยุประจำเมือง",
-        health: 5,
+        health: 3,
         maxHealth: 5,
         image: "image/Map/radiostation.png",
         bloodIcon: "image/hp.png",
