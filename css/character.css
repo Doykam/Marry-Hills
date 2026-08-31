@@ -121,3 +121,45 @@
   padding:60px 0;
   grid-column:1/-1;
 }
+
+.card-altname{
+  font-size:13px;
+  color:#8a8577;
+  font-style:italic;
+  margin-bottom:6px;
+}
+
+.card-photo-wrap{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:8px;
+}
+
+.card-photo-box img.dead{
+  filter:grayscale(100%);
+}
+
+.status-badge{
+  font-size:10.5px;
+  font-weight:700;
+  letter-spacing:.5px;
+  padding:4px 10px;
+  border-radius:20px;
+  text-align:center;
+  width:100%;
+  box-sizing:border-box;
+}
+.status-badge.status-alive{
+  background:rgba(74,107,82,0.2);
+  color:#8fbf98;
+}
+.status-badge.status-dead{
+  background:rgba(156,59,46,0.2);
+  color:#e08070;
+}
+
+.character-card.dead{
+  filter: saturate(0.6) brightness(0.85);
+  border-color:#6b3a3a;
+}
