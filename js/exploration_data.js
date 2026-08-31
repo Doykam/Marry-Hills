@@ -56,7 +56,7 @@ const AREAS = [
   { id:"uptown", name:"ย่านที่อยู่อาศัย อัป-ทาวน์", pool:["notebook", "photo", "oldnewspaper", "vhstape", "expiredmilk", "cassettetape", "goodwood", "badwood", "Matchbox", "goodnailbox", "badnailbox", "bigcandle", "smallcandle", "goodlighter", "badlighter", "milkpowder", "saltbag", "garlic", "fork"] },
   { id:"maple", name:"ย่านที่อยู่อาศัย เมเปิ้ล", pool:["oldnewspaper", "vhstape", "expiredmilk", "cassettetape", "goodwood", "badwood", "Matchbox", "goodnailbox", "badnailbox", "bigcandle", "smallcandle", "goodlighter", "badlighter", "cannedfood", "cannedtomato", "milkpowder", "slivercross", "saltbag", "garlic", "fork"] },
   { id:"store", name:"ร้านค้าของชำ", pool:["oldnewspaper", "expiredmilk", "Matchbox", "bigcandle", "smallcandle", "goodlighter", "badlighter", "cannedfood", "cannedtomato", "milkpowder", "saltbag", "garlic", ] },
-  { id:"hospital", name:"โรงพยาบาลเก่า", pool:["oldnewspaper", "Matchbox", "bigcandle", "smallcandle", "goodlighter", "badlighter", "fork" ] },
+  { id:"hospital", name:"โรงพยาบาลเก่า", pool:["salinebottom","oldnewspaper", "Matchbox", "bigcandle", "smallcandle", "goodlighter", "badlighter", "fork" ] },
   { id:"oldpolicestation", name:"สถานีตำรวจเก่า", pool:["ortableradio", "crowbar", "portableradio", "oldnewspaper", "cassettetape", "Matchbox", "goodlighter", "badlighter","axe", "stick", "shotgun"] },
   { id:"school", name:"โรงเรียนประถมประจำเมือง", pool:["photo", "salinebottom", "oldnewspaper", "vhstape", "expiredmilk", "cassettetape", "goodwood", "badwood", "Matchbox", "goodnailbox", "badnailbox", "goodlighter", "badlighter", "milkpowder", "fork"] },
   { id:"oldtomb", name:"สุสานเก่า", pool:["notebook", "photo", "oldnewspaper", "vhstape", "smallcandle", "badlighter", "slivercross", "torch"] },
