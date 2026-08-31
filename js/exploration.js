@@ -52,14 +52,15 @@ exploreBtn.addEventListener('click', async function () {
   // ไอเทมหายากที่ถูกเก็บไปแล้ว (คำนวณจาก log ทั้งหมด)
   const log = await loadExploreLog();
   const claimedRare = new Set(
-    log.filter(function (e) { return e.rare; }).map(function (e) { return e.itemKey; })
-  );
+  log.filter(function (e) { return e.rare; })
+     .map(function (e) { return e.areaName + '::' + e.itemKey; })
+);
  
   // พูลที่สุ่มได้จริง = ของทั่วไปทั้งหมด + ของหายากที่ยังไม่มีใครเอาไป
   const availablePool = area.pool.filter(function (key) {
-    const item = ITEM_LIBRARY[key];
-    return !item.rare || !claimedRare.has(key);
-  });
+  const item = ITEM_LIBRARY[key];
+  return !item.rare || !claimedRare.has(area.name + '::' + key);
+});
  
   if (availablePool.length === 0) {
     warnBox.innerHTML = '<div class="warn">พื้นที่นี้ไม่มีของเหลือให้สำรวจแล้ว</div>';
