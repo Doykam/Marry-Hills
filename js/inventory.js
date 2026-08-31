@@ -75,12 +75,13 @@ async function renderItemsView() {
       cardsHtml = '<div class="empty-note">ยังไม่มีของที่เก็บได้ในบ้านนี้</div>';
     }
  
-    houseBlock.innerHTML = `
-      <h3>${houseName}</h3>
-      <div class="item-card-grid">${cardsHtml}</div>
-    `;
-    houseSection.appendChild(houseBlock);
-  });
+    const claimedPairs = [];
+rareEntries.forEach(function (e) {
+  const pairKey = e.areaName + '::' + e.itemKey;
+  if (!claimedPairs.find(function (p) { return p.pairKey === pairKey; })) {
+    claimedPairs.push({ pairKey: pairKey, itemKey: e.itemKey, areaName: e.areaName });
+  }
+});
  
   // ---- ส่วนที่ 2: ของหายาก ที่ "มีคนเก็บได้แล้วเท่านั้น" (ไม่ผูกกับบ้านไหน) ----
   const rareSection = document.getElementById('rareItemsSection');
@@ -103,22 +104,20 @@ async function renderItemsView() {
   }
  
   let rareHtml = '';
-  claimedRareKeys.forEach(function (key) {
-    const item = ITEM_LIBRARY[key];
-    // หาเจ้าของ (คนแรกที่เก็บได้ ดูจากเวลาน้อยที่สุด)
-    const owner = rareEntries
-      .filter(function (e) { return e.itemKey === key; })
-      .sort(function (a, b) { return a.ts - b.ts; })[0];
- 
-    rareHtml += `
-      <div class="item-card rare">
-        <img src="${item.image}" alt="${item.name}">
-        <div class="item-card-name">${item.name}</div>
-        <div class="item-card-category">${item.category}</div>
-        <div class="item-card-owner">เก็บโดย ${owner.character} (${owner.house})</div>
-      </div>
-    `;
+  claimedPairs.forEach(function (pair) {
+  const item = ITEM_LIBRARY[pair.itemKey];
+  const owner = rareEntries.find(function (e) {
+    return e.itemKey === pair.itemKey && e.areaName === pair.areaName;
   });
+
+  rareHtml += `
+    <div class="item-card rare">
+      <img src="${item.image}" alt="${item.name}">
+      <div class="item-card-name">${item.name}</div>
+      <div class="item-card-owner">จาก ${pair.areaName} · เก็บโดย ${owner.character} (${owner.house})</div>
+    </div>
+  `;
+});
  
   rareSection.innerHTML = rareHtml;
 }
