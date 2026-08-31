@@ -1,12 +1,14 @@
 
 const COL_NAME  = "ชื่อตัวละคร";
+const COL_ALTNAME = "ชื่อภาษาอื่น";
+const COL_STATUS  = "สถานะ";
 const COL_HOUSE = "บ้าน";
 const COL_PHOTO = "รูปภาพ";
 const COL_IG    = "ลิงก์ไอจี";
 const COL_DOC   = "ลิงก์ฟอร์ม";
  
 // รวมชื่อคอลัมน์พิเศษทั้งหมดไว้ในลิสต์เดียว ใช้เช็คว่า "อันไหนพิเศษ อันไหนทั่วไป"
-const RESERVED_COLUMNS = [COL_NAME, COL_HOUSE, COL_PHOTO, COL_IG, COL_DOC];
+const RESERVED_COLUMNS = [COL_NAME, COL_ALTNAME, COL_HOUSE, COL_PHOTO, COL_IG, COL_DOC, COL_STATUS];
  
 const searchInput = document.getElementById('characterSearch');
 const grid = document.getElementById('characterGrid');
@@ -65,10 +67,11 @@ function buildCard(row) {
   info.className = 'card-info';
  
   info.innerHTML = `
-    <div class="card-eyebrow">MEMBER ID</div>
-    <div class="card-name">${row[COL_NAME] || ''}</div>
-    <div class="card-house">${row[COL_HOUSE] || ''}</div>
-  `;
+  <div class="card-eyebrow">MEMBER ID</div>
+  <div class="card-name">${row[COL_NAME] || ''}</div>
+  ${row[COL_ALTNAME] ? `<div class="card-altname">${row[COL_ALTNAME]}</div>` : ''}
+  <div class="card-house">${row[COL_HOUSE] || ''}</div>
+`;
  
   // วนดูทุกคอลัมน์ใน row นี้ ถ้าไม่ใช่คอลัมน์พิเศษ (RESERVED_COLUMNS) ให้โชว์เป็นแถวสเตตัสทั่วไป
   Object.keys(row).forEach(function (colName) {
@@ -89,10 +92,25 @@ function buildCard(row) {
   card.appendChild(info);
  
   // ---- ส่วนขวา: กรอบรูปภาพ ----
-  const photoBox = document.createElement('div');
-  photoBox.className = 'card-photo-box';
-  photoBox.innerHTML = `<img src="${row[COL_PHOTO] || ''}" alt="${row[COL_NAME] || ''}">`;
-  card.appendChild(photoBox);
+ const status = (row[COL_STATUS] || '').trim().toUpperCase();
+const isDead = status === 'DEAD';
+
+const photoWrap = document.createElement('div');
+photoWrap.className = 'card-photo-wrap';
+
+const photoBox = document.createElement('div');
+photoBox.className = 'card-photo-box';
+photoBox.innerHTML = `<img src="${row[COL_PHOTO] || ''}" alt="${row[COL_NAME] || ''}" class="${isDead ? 'dead' : ''}">`;
+photoWrap.appendChild(photoBox);
+
+const statusBadge = document.createElement('div');
+statusBadge.className = 'status-badge ' + (isDead ? 'status-dead' : 'status-alive');
+statusBadge.textContent = isDead ? 'DEAD' : 'ALIVE';
+photoWrap.appendChild(statusBadge);
+
+card.appendChild(photoWrap);
+
+if (isDead) card.classList.add('dead');
  
   // ---- แถวลิงก์ด้านล่าง: IG / เอกสารเต็ม (โชว์เฉพาะอันที่มีลิงก์จริง) ----
   const hasIg  = row[COL_IG]  && row[COL_IG].trim()  !== "";
