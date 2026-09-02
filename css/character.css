@@ -158,6 +158,10 @@
   background:rgba(156,59,46,0.2);
   color:#e08070;
 }
+.status-badge.status-missing{
+  background:rgba(217,161,92,0.2);
+  color:#e8b96a;
+}
 
 .character-card.dead{
   filter: saturate(0.6) brightness(0.85);
