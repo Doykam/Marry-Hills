@@ -94,6 +94,7 @@ function buildCard(row) {
   // ---- ส่วนขวา: กรอบรูปภาพ ----
  const status = (row[COL_STATUS] || '').trim().toUpperCase();
 const isDead = status === 'DEAD';
+const isMissing = status === 'MISSING';
 
 const photoWrap = document.createElement('div');
 photoWrap.className = 'card-photo-wrap';
@@ -103,9 +104,14 @@ photoBox.className = 'card-photo-box';
 photoBox.innerHTML = `<img src="${row[COL_PHOTO] || ''}" alt="${row[COL_NAME] || ''}" class="${isDead ? 'dead' : ''}">`;
 photoWrap.appendChild(photoBox);
 
+let badgeClass = 'status-alive';
+let badgeText  = 'ALIVE';
+if (isDead)    { badgeClass = 'status-dead';    badgeText = 'DEAD'; }
+if (isMissing) { badgeClass = 'status-missing'; badgeText = 'MISSING'; }
+
 const statusBadge = document.createElement('div');
-statusBadge.className = 'status-badge ' + (isDead ? 'status-dead' : 'status-alive');
-statusBadge.textContent = isDead ? 'DEAD' : 'ALIVE';
+statusBadge.className = 'status-badge ' + badgeClass;
+statusBadge.textContent = badgeText;
 photoWrap.appendChild(statusBadge);
 
 card.appendChild(photoWrap);
@@ -123,6 +129,25 @@ if (isDead) card.classList.add('dead');
     if (hasDoc) links.innerHTML += `<a href="${row[COL_DOC]}" target="_blank" rel="noopener">ข้อมูลฉบับเต็ม</a>`;
     card.appendChild(links);
   }
+
+ if (isMissing) {
+  const nameEl = card.querySelector('.card-name');
+  const altEl  = card.querySelector('.card-altname');
+
+  const realName = nameEl.textContent;
+  const realAlt  = altEl ? altEl.textContent : null;
+
+  const maskedName = '?'.repeat(realName.length);
+  const maskedAlt  = realAlt ? '?'.repeat(realAlt.length) : null;
+
+  let showingReal = true;
+
+  setInterval(function () {
+    showingReal = !showingReal;
+    nameEl.textContent = showingReal ? realName : maskedName;
+    if (altEl) altEl.textContent = showingReal ? realAlt : maskedAlt;
+  }, 1000);
+}
  
   return card;
 }
