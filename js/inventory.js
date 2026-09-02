@@ -37,27 +37,25 @@ categoryFilter.addEventListener('change', renderItemsView);
 ------------------------------------------------------------------------- */
 async function renderItemsView() {
   const log = (await loadExploreLog()).reverse();
- 
+
   // ---- ส่วนที่ 1: ของทั่วไป แยกตามบ้าน ----
   const houseSection = document.getElementById('itemsByHouse');
   houseSection.innerHTML = '';
- 
+
   HOUSE_NAMES.forEach(function (houseName) {
-    // เอาเฉพาะ log ที่เป็นของทั่วไป (ไม่ rare) และเป็นของบ้านนี้
     const entriesForHouse = log.filter(function (e) {
-  const matchCategory = !categoryFilter.value || ITEM_LIBRARY[e.itemKey].category === categoryFilter.value;
-  return e.house === houseName && !e.rare && matchCategory;
-});
- 
-    // นับจำนวนแต่ละชนิดไอเทมในบ้านนี้ (key -> count)
+      const matchCategory = !categoryFilter.value || ITEM_LIBRARY[e.itemKey].category === categoryFilter.value;
+      return e.house === houseName && !e.rare && matchCategory;
+    });
+
     const counts = {};
     entriesForHouse.forEach(function (e) {
       counts[e.itemKey] = (counts[e.itemKey] || 0) + 1;
     });
- 
+
     const houseBlock = document.createElement('div');
     houseBlock.className = 'house-items-block';
- 
+
     let cardsHtml = '';
     Object.keys(counts).forEach(function (key) {
       const item = ITEM_LIBRARY[key];
@@ -70,55 +68,56 @@ async function renderItemsView() {
         </div>
       `;
     });
- 
+
     if (cardsHtml === '') {
       cardsHtml = '<div class="empty-note">ยังไม่มีของที่เก็บได้ในบ้านนี้</div>';
     }
- 
-    const claimedPairs = [];
-rareEntries.forEach(function (e) {
-  const pairKey = e.areaName + '::' + e.itemKey;
-  if (!claimedPairs.find(function (p) { return p.pairKey === pairKey; })) {
-    claimedPairs.push({ pairKey: pairKey, itemKey: e.itemKey, areaName: e.areaName });
-  }
-});
- 
+
+    houseBlock.innerHTML = `
+      <h3>${houseName}</h3>
+      <div class="item-card-grid">${cardsHtml}</div>
+    `;
+    houseSection.appendChild(houseBlock);
+  }); // ← ปิดลูป HOUSE_NAMES.forEach ตรงนี้ให้ครบ ก่อนไปทำส่วนของหายาก
+
   // ---- ส่วนที่ 2: ของหายาก ที่ "มีคนเก็บได้แล้วเท่านั้น" (ไม่ผูกกับบ้านไหน) ----
   const rareSection = document.getElementById('rareItemsSection');
   rareSection.innerHTML = '';
- 
-  // หาว่าของหายากชนิดไหนบ้างที่เคยถูกเก็บ (เอาแค่ครั้งแรกที่เจอ เป็นคนคนแรกที่ครอบครอง)
+
   const rareEntries = log.filter(function (e) {
-  const matchCategory = !categoryFilter.value || ITEM_LIBRARY[e.itemKey].category === categoryFilter.value;
-  return e.rare && matchCategory;
-});
- 
-  const claimedRareKeys = [];
-  rareEntries.forEach(function (e) {
-    if (claimedRareKeys.indexOf(e.itemKey) === -1) claimedRareKeys.push(e.itemKey);
+    const matchCategory = !categoryFilter.value || ITEM_LIBRARY[e.itemKey].category === categoryFilter.value;
+    return e.rare && matchCategory;
   });
- 
-  if (claimedRareKeys.length === 0) {
+
+  const claimedPairs = [];
+  rareEntries.forEach(function (e) {
+    const pairKey = e.areaName + '::' + e.itemKey;
+    if (!claimedPairs.find(function (p) { return p.pairKey === pairKey; })) {
+      claimedPairs.push({ pairKey: pairKey, itemKey: e.itemKey, areaName: e.areaName });
+    }
+  });
+
+  if (claimedPairs.length === 0) {
     rareSection.innerHTML = '<div class="empty-note">ยังไม่มีของหายากชิ้นไหนถูกเก็บเลย</div>';
     return;
   }
- 
+
   let rareHtml = '';
   claimedPairs.forEach(function (pair) {
-  const item = ITEM_LIBRARY[pair.itemKey];
-  const owner = rareEntries.find(function (e) {
-    return e.itemKey === pair.itemKey && e.areaName === pair.areaName;
+    const item = ITEM_LIBRARY[pair.itemKey];
+    const owner = rareEntries.find(function (e) {
+      return e.itemKey === pair.itemKey && e.areaName === pair.areaName;
+    });
+
+    rareHtml += `
+      <div class="item-card rare">
+        <img src="${item.image}" alt="${item.name}">
+        <div class="item-card-name">${item.name}</div>
+        <div class="item-card-owner">จาก ${pair.areaName} · เก็บโดย ${owner.character} (${owner.house})</div>
+      </div>
+    `;
   });
 
-  rareHtml += `
-    <div class="item-card rare">
-      <img src="${item.image}" alt="${item.name}">
-      <div class="item-card-name">${item.name}</div>
-      <div class="item-card-owner">จาก ${pair.areaName} · เก็บโดย ${owner.character} (${owner.house})</div>
-    </div>
-  `;
-});
- 
   rareSection.innerHTML = rareHtml;
 }
  
