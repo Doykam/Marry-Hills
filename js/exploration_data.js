@@ -47,7 +47,7 @@ const AREAS = [
   { id:"highschool", name:"โรงเรียนแมร์รี่ฮิลส์", pool:["notebook", "photo", "salinebottom", "polaroidcamera", "oldnewspaper", "vhstape", "expiredmilk", "cassettetape", "goodwood", "badwood", "goodnailbox", "badnailbox", "goodlighter", "badlighter", "crowbar", "fork", ] },
   { id:"newchurch", name:"โบสถ์ประจำเมือง", pool:["notebook", "oldnewspaper", "expiredmilk", "goodwood", "badwood", "Matchbox", "bigcandle", "smallcandle", "goodlighter", "badlighter", "salinebottom", "holywater", "garlic", "saltbag", "torch", "fork", ] },
   { id:"districtoffice", name:"ที่ว่าการเมือง", pool:["photo", "portableradio", "oldnewspaper", "key", "cassettetape", "Matchbox", "goodlighter", "badlighter", "fork", "shotgun"] },
-  { id:"newhealthcenter", name:"อนามัยประจำเมือง", pool:["salinebottom", "oldnewspaper", "Matchbox", "bigcandle", "smallcandle", "goodlighter", "badlighter", "fork", ] },
+  { id:"newhealthcenter", name:"อนามัยประจำเมือง", pool:[ "oldnewspaper", "Matchbox", "bigcandle", "smallcandle", "goodlighter", "badlighter", "fork", ] },
   { id:"market", name:"ตลาดพืช", pool:["oldnewspaper", "goodwood", "badwood", "Matchbox", "goodnailbox", "badnailbox", "cannedfood", "cannedtomato", "milkpowder", "saltbag", "garlic", "torch", ] },
   { id:"newpolicestation", name:"สำนักงานตำรวจ", pool:["photo", "portableradio", "oldnewspaper", "cassettetape", "Matchbox", "goodlighter", "badlighter", "fork", "shotgun"] },
   { id:"gasstation", name:"ปั้มน้ำมัน", pool:["oldnewspaper", "expiredmilk", "cassettetape", "goodnailbox", "badnailbox", "goodlighter", "badlighter", "cannedfood", "cannedtomato", "crowbar", ] },
