@@ -2,7 +2,7 @@ const HOUSES = [
     {
         id: "church",
         name: "โบสถ์เก่า",
-        health: 5,
+        health: 3,
         maxHealth: 5,
         image: "image/Map/church.png",
         bloodIcon: "image/hp.png",
